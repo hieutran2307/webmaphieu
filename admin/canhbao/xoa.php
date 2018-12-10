@@ -1,12 +1,12 @@
 <?php 
 session_start();
-	require "../Ketnoi/Db.php";
-	require "../Ketnoi/Truyvan.php";
+require "../Ketnoi/Db.php";
+require "../Ketnoi/Truyvan.php";
 // kiem tra trang thai chua dang nhap
-// if(!isset( $_SESSION["Id"])){
-// 	header('Location: ../index.php');
-// 	require "../index.php";
-// }
+if(!isset( $_SESSION["Id"])){
+	header('Location: ../index.php');
+	require "../index.php";
+}
 ?>
 <?php 
 $ID = $_GET["ID"];
@@ -249,7 +249,7 @@ function ShowThumbnails( fileUrl, data ){
 									<label>Tinh Trạng:</label>
 									<input disabled class="form-control" name="TinhTrang" id="TinhTrang" value="<?php echo $row_chi_canh_bao['TinhTrang'] ?>">
 								</div>				
-								<input onclick="return confirm('Bạn Có muốn xóa hay không')"  type="submit" name="btncapnhat" id="btncapnhat" value="Cập Nhật" class="btn btn-lg btn-primary"></input>
+								<input onclick="return confirm('Bạn Có muốn xóa hay không')"  type="submit" name="btncapnhat" id="btncapnhat" value="Xóa" class="btn btn-lg btn-primary">
 							</form>
 						</div>
 					</div>

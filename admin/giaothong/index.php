@@ -11,7 +11,7 @@ if(!isset( $_SESSION["Id"])){
 <html><head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>Lumino - Danh sách luật giao thông</title>
+	<title>Danh sách luật giao thông</title>
 	<link href="../css/bootstrap.min.css" rel="stylesheet">
 	<link href="../css/font-awesome.min.css" rel="stylesheet">
 	<link href="../css/datepicker3.css" rel="stylesheet">
@@ -100,12 +100,12 @@ if(!isset( $_SESSION["Id"])){
 	</div><!--/.sidebar-->
 		
 	<div class="col-sm-9 col-sm-offset-3 col-lg-10 col-lg-offset-2 main">
-		<div class="row">
+	<div class="row">
 			<ol class="breadcrumb">
 				<li><a href="../home.php">
 					<em class="fa fa-home"></em>
 				</a></li>
-				<li class="active">Danh sách luật giao thông</li>
+				<li class="active">Home</li></li>
 			</ol>
 		</div><!--/.row-->
 		

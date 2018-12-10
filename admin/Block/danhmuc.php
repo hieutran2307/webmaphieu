@@ -18,9 +18,7 @@
 		<ul class="nav menu">
 			<li class="active"><a href="home.php"><em class="fa fa-dashboard">&nbsp;</em> Bảng điều khiển</a></li>
 			<li><a href="tintuc"><em class="fa fa-comments">&nbsp;</em> Quản lý tin tức</a></li>
-			<li><a href="charts.html"><em class="fa fa-bar-chart">&nbsp;</em> Quản lý danh sách luật giao thông</a></li>
-			<li><a href="elements.html"><em class="fa fa-toggle-off">&nbsp;</em>Quản lý cảnh báo</a></li>
-		
-			<li><a href="login.html"><em class="fa fa-power-off">&nbsp;</em> Đăng xuất</a></li>
-		</ul>
+			<li><a href="giaothong"><em class="fa fa-bar-chart">&nbsp;</em> Quản lý danh sách luật giao thông</a></li>
+			<li><a href="canhbao"><em class="fa fa-toggle-off">&nbsp;</em>Quản lý cảnh báo</a></li>
+				</ul>
 	</div>

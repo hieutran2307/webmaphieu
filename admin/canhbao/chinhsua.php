@@ -1,12 +1,12 @@
 <?php 
 session_start();
-	require "../Ketnoi/Db.php";
-	require "../Ketnoi/Truyvan.php";
+require "../Ketnoi/Db.php";
+require "../Ketnoi/Truyvan.php";
 // kiem tra trang thai chua dang nhap
-// if(!isset( $_SESSION["Id"])){
-// 	header('Location: ../index.php');
-// 	require "../index.php";
-// }
+if(!isset( $_SESSION["Id"])){
+	header('Location: ../index.php');
+	require "../index.php";
+}
 ?>
 <?php 
 $ID = $_GET["ID"];
