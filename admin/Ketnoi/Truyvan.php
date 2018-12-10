@@ -24,4 +24,12 @@ $sql = "SELECT * FROM tintuc WHERE Id='$Id'";
 $row = mysql_query($sql);
 return mysql_fetch_array($row);
 }
+
+function danh_sach_canh_bao()
+{
+      $sql = "SELECT * FROM canhbao";
+    return mysql_query($sql);
+
+}
+
 ?>

@@ -11,7 +11,7 @@ if(!isset( $_SESSION["Id"])){
 <html><head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>Lumino - Danh sách tin tức</title>
+	<title>Lumino - Danh sách cảnh báo</title>
 	<link href="../css/bootstrap.min.css" rel="stylesheet">
 	<link href="../css/font-awesome.min.css" rel="stylesheet">
 	<link href="../css/datepicker3.css" rel="stylesheet">
@@ -105,13 +105,13 @@ if(!isset( $_SESSION["Id"])){
 				<li><a href="#">
 					<em class="fa fa-home"></em>
 				</a></li>
-				<li class="active">Danh sách tin tức</li>
+				<li class="active">Danh sách cảnh báo</li>
 			</ol>
 		</div><!--/.row-->
 		
 		<div class="row">
 			<div class="col-lg-12">
-				<h1 class="page-header">Danh sách tin tức</h1>
+				<h1 class="page-header">Danh sách cảnh báo</h1>
 			</div>
 		</div><!--/.row-->
 
@@ -124,8 +124,8 @@ if(!isset( $_SESSION["Id"])){
 					<div class="panel-body articles-container">
 						
 						<?php 
-							$ds_tintuc = danh_sach_tin();
-							while ($row_tintuc = mysql_fetch_array($ds_tintuc))
+							$ds_canhbao = danh_sach_canh_bao();
+							while ($row_canhbao = mysql_fetch_array($ds_canhbao))
 							{
 						?>
 						<div class="article border-bottom">
@@ -134,14 +134,14 @@ if(!isset( $_SESSION["Id"])){
 									<div class="col-xs-2 col-md-2 date">
 										<div class="large">
 
-                                   <img style="width:100px;height:100px;" src="../HinhAnh/TinTuc/<?php echo $row_tintuc['HinhAnh'] ?>" alt="Italian Trulli">
+                                   <img style="width:100px;height:100px;" src="../../HinhAnh/CanhBao/<?php echo $row_canhbao['HinhAnh'] ?>" alt="Italian Trulli">
 
                                         </div>
 										
 									</div>
 									<div class="col-xs-10 col-md-10">
-										<h4><a href="edit.php?Id=<?php echo $row_tintuc['Id'] ?>"><?php echo $row_tintuc['TieuDe'] ?></a></h4>
-										<p><?php echo $row_tintuc['NoiDung'] ?></p>
+										<h4><a href="edit.php?Id=<?php echo $row_tintuc['Id'] ?>"><?php echo $row_canhbao['TenDuong'] ?></a></h4>
+										<p style="color:red;font-size:15px;"><?php echo $row_canhbao['TinhTrang'] ?></p>
 									</div>
 									<h4><a href="xoa.php?Id=<?php echo $row_tintuc['Id'] ?>">Xóa</a></h4>
 								</div>
