@@ -1,6 +1,37 @@
-<!DOCTYPE html>
+<?php 
+session_start();
+	require "../Ketnoi/Db.php";
+	require "../Ketnoi/Truyvan.php";
+// kiem tra trang thai chua dang nhap
+if(!isset( $_SESSION["Id"])){
+	header('Location: ../index.php');
+	require "../index.php";
+}
+?>
+<!--them tin-->
+<?php
+if(isset($_POST['btnthemtin']))
+{
+$TieuDe =$_POST['TieuDe'];
+$ThoiGian = date("Y-m-d");
+$NoiDung = $_POST['NoiDung'];
+$HinhAnh = $_POST['HinhAnh'];
+$NoiDungChiTiet = $_POST['NoiDungChiTiet'];
+$qr="INSERT INTO tintuc values(
+	null, '$TieuDe','$ThoiGian','$NoiDung','$HinhAnh','$NoiDungChiTiet'
+)
+";
+mysql_query($qr);
+header("location:./index.php");
+}
+?>
+<!--dong them tin-->
+
+
+
 <html>
 <head>
+<script src="../ckeditor/ckeditor.js"></script>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>Lumino UI Elements</title>
@@ -15,6 +46,39 @@
 	<script src="js/html5shiv.js"></script>
 	<script src="js/respond.min.js"></script>
 	<![endif]-->
+	<script src="../ckeditor/ckeditor.js"></script>
+	<script src="../ckfinder/ckfinder.js"></script>
+
+	<!--ham goi chen hinh-->
+	<script type="text/javascript">
+function BrowseServer( startupPath, functionData ){
+	var finder = new CKFinder();
+	finder.basePath = '../ckfinder'; //Đường path nơi đặt ckfinder
+	finder.startupPath = startupPath; //Đường path hiện sẵn cho user chọn file
+	finder.selectActionFunction = SetFileField; // hàm sẽ được gọi khi 1 file được chọn
+	finder.selectActionData = functionData; //id của text field cần hiện địa chỉ hình
+	//finder.selectThumbnailActionFunction = ShowThumbnails; //hàm sẽ được gọi khi 1 file thumnail được chọn	
+	finder.popup(); // Bật cửa sổ CKFinder
+} //BrowseServer
+
+function SetFileField( fileUrl, data ){
+	document.getElementById( data["selectActionData"] ).value = fileUrl;
+}
+function ShowThumbnails( fileUrl, data ){	
+	var sFileName = this.getSelectedFile().name; // this = CKFinderAPI
+	document.getElementById( 'thumbnails' ).innerHTML +=
+	'<div class="thumb">' +
+	'<img src="' + fileUrl + '" />' +
+	'<div class="caption">' +
+	'<a href="' + data["fileUrl"] + '" target="_blank">' + sFileName + '</a> (' + data["fileSize"] + 'KB)' +
+	'</div>' +
+	'</div>';
+	document.getElementById( 'preview' ).style.display = "";
+	return false; // nếu là true thì ckfinder sẽ tự đóng lại khi 1 file thumnail được chọn
+}
+</script>
+
+	<!--dong ham goi chen hinh-->
 </head>
 <body>
 	<nav class="navbar navbar-custom navbar-fixed-top" role="navigation">
@@ -155,19 +219,73 @@
 								</div>
 								<div class="form-group">
 									<label>Nội Dung</label>
-									<input type="password" class="form-control">
+									<textarea name="NoiDung" id="NoiDung" class="form-group" ></textarea>
+									<script type="text/javascript">
+var editor = CKEDITOR.replace( 'NoiDung',{
+	uiColor : '#9AB8F3',
+	language:'vi',
+	skin:'v2',
+	filebrowserImageBrowseUrl : 'ckfinder/ckfinder.html?Type=Images',
+filebrowserFlashBrowseUrl : 'ckfinder/ckfinder.html?Type=Flash',
+filebrowserImageUploadUrl : 'ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Images',
+filebrowserFlashUploadUrl : 'ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Flash',
+			 	
+	toolbar:[
+	['Source','-','Save','NewPage','Preview','-','Templates'],
+	['Cut','Copy','Paste','PasteText','PasteFromWord','-','Print'],
+	['Undo','Redo','-','Find','Replace','-','SelectAll','RemoveFormat'],
+	['Form', 'Checkbox', 'Radio', 'TextField', 'Textarea', 'Select', 'Button', 'ImageButton', 'HiddenField'],
+	['Bold','Italic','Underline','Strike','-','Subscript','Superscript'],
+	['NumberedList','BulletedList','-','Outdent','Indent','Blockquote','CreateDiv'],
+	['JustifyLeft','JustifyCenter','JustifyRight','JustifyBlock'],
+	['Link','Unlink','Anchor'],
+	['Image','Flash','Table','HorizontalRule','Smiley','SpecialChar','PageBreak'],
+	['Styles','Format','Font','FontSize'],
+	['TextColor','BGColor'],
+	['Maximize', 'ShowBlocks','-','About']
+	]
+});		
+</script>
 								</div>
 								
 								<div class="form-group">
 									<label>Hình Ảnh</label>
-                                    <input type="file">
+									<input type="text" class="form-control">
+									<input onclick="BrowseServer('Images:/','urlHinh')" type="button"  name="btnchonfile" id="btnchonfile" value="Chọn Hình">
+									<br>
                                     <div class="form-group">
 									<label>Chi tiết</label>
-									<input type="password" class="form-control">
+									<textarea name="ChiTiet" id="ChitTiet" class="form-group" ></textarea>
+									<script type="text/javascript">
+var editor = CKEDITOR.replace( 'ChiTiet',{
+	uiColor : '#9AB8F3',
+	language:'vi',
+	skin:'v2',
+	filebrowserImageBrowseUrl : 'ckfinder/ckfinder.html?Type=Images',
+filebrowserFlashBrowseUrl : 'ckfinder/ckfinder.html?Type=Flash',
+filebrowserImageUploadUrl : 'ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Images',
+filebrowserFlashUploadUrl : 'ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Flash',
+			 	
+	toolbar:[
+	['Source','-','Save','NewPage','Preview','-','Templates'],
+	['Cut','Copy','Paste','PasteText','PasteFromWord','-','Print'],
+	['Undo','Redo','-','Find','Replace','-','SelectAll','RemoveFormat'],
+	['Form', 'Checkbox', 'Radio', 'TextField', 'Textarea', 'Select', 'Button', 'ImageButton', 'HiddenField'],
+	['Bold','Italic','Underline','Strike','-','Subscript','Superscript'],
+	['NumberedList','BulletedList','-','Outdent','Indent','Blockquote','CreateDiv'],
+	['JustifyLeft','JustifyCenter','JustifyRight','JustifyBlock'],
+	['Link','Unlink','Anchor'],
+	['Image','Flash','Table','HorizontalRule','Smiley','SpecialChar','PageBreak'],
+	['Styles','Format','Font','FontSize'],
+	['TextColor','BGColor'],
+	['Maximize', 'ShowBlocks','-','About']
+	]
+});		
+</script>
 								</div>
 								
                                     <br/>
-                                    <button type="button" class="btn btn-lg btn-primary">Cập Nhật</button>
+                                    <button type="button" name="btnthemtin" id="btnthemtin" class="btn btn-lg btn-primary">Cập Nhật</button>
 
 								</div>
 							
