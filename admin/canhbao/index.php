@@ -119,7 +119,7 @@ if(!isset( $_SESSION["Id"])){
 			<div class="">
 				<div class="panel panel-default articles">
 					<div class="panel-heading">
-						<a href="../tintuc/themtin.php"><button type="button"  class="btn btn-md btn-primary">Thêm mới</button></a>
+						<a href="../canhbao/them.php"><button type="button"  class="btn btn-md btn-primary">Thêm mới</button></a>
 						<span class="pull-right clickable panel-toggle panel-button-tab-left"></span></div>
 					<div class="panel-body articles-container">
 						
