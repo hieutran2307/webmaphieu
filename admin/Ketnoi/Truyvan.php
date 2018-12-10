@@ -18,4 +18,10 @@ function danh_sach_tin()
     return mysql_query($sql);
 
 }
+function chi_tiet_tin_tuc($Id)
+{
+$sql = "SELECT * FROM tintuc WHERE Id='$Id'";
+$row = mysql_query($sql);
+return mysql_fetch_array($row);
+}
 ?>

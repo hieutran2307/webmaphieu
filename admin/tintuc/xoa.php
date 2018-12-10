@@ -27,13 +27,7 @@ $name = $_FILES["fileUpload"]["name"];
 if( $size <= 5*1024*1024 ) {
 	move_uploaded_file(
 		$_FILES["fileUpload"]["tmp_name"],"../HinhAnh/TinTuc/$name");
-  $sql ="UPDATE tintuc SET
-  TieuDe= '$TieuDe',
-  ThoiGian ='$ThoiGian',
-  NoiDung ='$NoiDung',
-  HinhAnh ='$name',
-  NoiDungChiTiet= '$NoiDungChiTiet'
-  where Id='$Id'";
+  $sql ="DELETE FROM tintuc  WHERE Id='$Id'";
  
 	mysql_query($sql);
 	 header('Location: index.php');
@@ -233,11 +227,11 @@ function ShowThumbnails( fileUrl, data ){
 						<form method="POST" enctype="multipart/form-data">
 								<div class="form-group">
 									<label>Tiêu Đề</label>
-									<input class="form-control" value="<?php echo $row_chi_tiet_tin_tuc['TieuDe'] ?>" name="TieuDe" id="TieuDe">
+									<input disabled class="form-control" value="<?php echo $row_chi_tiet_tin_tuc['TieuDe'] ?>" name="TieuDe" id="TieuDe">
 								</div>
 								<div class="form-group">
 									<label>Thời gian:</label>
-									<input class="form-control" value="<?php echo $row_chi_tiet_tin_tuc['ThoiGian'] ?>" type="date" name="ThoiGian" id="ThoiGian">
+									<input disabled class="form-control" value="<?php echo $row_chi_tiet_tin_tuc['ThoiGian'] ?>" type="date" name="ThoiGian" id="ThoiGian">
 
 									<script>
 									$(document).ready(function() {
@@ -258,72 +252,10 @@ currentText: 'Hôm nay', weekHeader: 'Tuần'
 
 									</script>
 								</div>
-								<div class="form-group">
-									<label>Nội Dung</label>
-									<textarea name="NoiDung"  id="NoiDung" class="form-group"><?php echo $row_chi_tiet_tin_tuc['NoiDung'] ?></textarea>
-									<script type="text/javascript">
-var editor = CKEDITOR.replace( 'NoiDung',{
-	uiThoiGian : '#9AB8F3',
-	language:'vi',
-	skin:'v2',
-	filebrowserImageBrowseUrl : 'ckfinder/ckfinder.html?Type=Images',
-filebrowserFlashBrowseUrl : 'ckfinder/ckfinder.html?Type=Flash',
-filebrowserImageUploadUrl : 'ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Images',
-filebrowserFlashUploadUrl : 'ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Flash',
-			 	
-	toolbar:[
-	['Source','-','Save','NewPage','Preview','-','Templates'],
-	['Cut','Copy','Paste','PasteText','PasteFromWord','-','Print'],
-	['Undo','Redo','-','Find','Replace','-','SelectAll','RemoveFormat'],
-	['Form', 'Checkbox', 'Radio', 'TextField', 'Textarea', 'Select', 'Button', 'ImageButton', 'HiddenField'],
-	['Bold','Italic','Underline','Strike','-','Subscript','Superscript'],
-	['NumberedList','BulletedList','-','Outdent','Indent','Blockquote','CreateDiv'],
-	['JustifyLeft','JustifyCenter','JustifyRight','JustifyBlock'],
-	['Link','Unlink','Anchor'],
-	['Image','Flash','Table','HorizontalRule','Smiley','SpecialChar','PageBreak'],
-	['Styles','Format','Font','FontSize'],
-	['TextThoiGian','BGThoiGian'],
-	['Maximize', 'ShowBlocks','-','About']
-	]
-});		
-</script>
-								</div>
 								
-								<div class="form-group">
-									<label>Hình Ảnh</label>
-									<input type="file"value="<?php echo $row_chi_tiet_tin_tuc['HinhAnh'] ?>" class="custom-file-input" name="fileUpload" >
-									<br>
-                                    <div class="form-group">
-									<label>Chi tiết</label>
-									<textarea name="NoiDungChiTiet"value="<?php echo $row_chi_tiet_tin_tuc['NoiDungChiTiet'] ?>" id="NoiDungChiTiet" class="form-group" ><?php echo $row_chi_tiet_tin_tuc['NoiDungChiTiet'] ?></textarea>
-									<script type="text/javascript">
-var editor = CKEDITOR.replace( 'NoiDungChiTiet',{
-	uiThoiGian : '#9AB8F3',
-	language:'vi',
-	skin:'v2',
-	filebrowserImageBrowseUrl : 'ckfinder/ckfinder.html?Type=Images',
-filebrowserFlashBrowseUrl : 'ckfinder/ckfinder.html?Type=Flash',
-filebrowserImageUploadUrl : 'ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Images',
-filebrowserFlashUploadUrl : 'ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Flash',
-			 	
-	toolbar:[
-	['Source','-','Save','NewPage','Preview','-','Templates'],
-	['Cut','Copy','Paste','PasteText','PasteFromWord','-','Print'],
-	['Undo','Redo','-','Find','Replace','-','SelectAll','RemoveFormat'],
-	['Form', 'Checkbox', 'Radio', 'TextField', 'Textarea', 'Select', 'Button', 'ImageButton', 'HiddenField'],
-	['Bold','Italic','Underline','Strike','-','Subscript','Superscript'],
-	['NumberedList','BulletedList','-','Outdent','Indent','Blockquote','CreateDiv'],
-	['JustifyLeft','JustifyCenter','JustifyRight','JustifyBlock'],
-	['Link','Unlink','Anchor'],
-	['Image','Flash','Table','HorizontalRule','Smiley','SpecialChar','PageBreak'],
-	['Styles','Format','Font','FontSize'],
-	['TextThoiGian','BGThoiGian'],
-	['Maximize', 'ShowBlocks','-','About']
-	]
-});		
-</script>				
-								</div>
-								<input type="submit" name="btncapnhat" id="btncapnhat" value="Cập Nhật" class="btn btn-lg btn-primary"></input>
+								
+								
+								<input onclick="return confirm('Bạn Có muốn xóa hay không')" type="submit" name="btncapnhat" id="btncapnhat" value="Xóa" class="btn btn-lg btn-primary"></input>
 							</form>
 						</div>
 					</div>
