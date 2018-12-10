@@ -10,19 +10,31 @@ if(!isset( $_SESSION["Id"])){
 ?>
 <!--them tin-->
 <?php
-if(isset($_POST['btnthemtin']))
+if(isset($_POST['btncapnhat']))
 {
-$TieuDe =$_POST['TieuDe'];
-$ThoiGian = date("Y-m-d");
-$NoiDung = $_POST['NoiDung'];
-$HinhAnh = $_POST['HinhAnh'];
-$NoiDungChiTiet = $_POST['NoiDungChiTiet'];
-$qr="INSERT INTO tintuc values(
-	null, '$TieuDe','$ThoiGian','$NoiDung','$HinhAnh','$NoiDungChiTiet'
-)
-";
-mysql_query($qr);
-header("location:./index.php");
+$TieuDe = $_POST['TieuDe'];
+$ThoiGian = $_POST['ThoiGian'];
+ $NoiDung = $_POST['NoiDung'];
+ $NoiDungChiTiet = $_POST['NoiDungChiTiet'];
+$name = $_FILES["fileUpload"]["name"];
+ $type = $_FILES["fileUpload"]["type"];
+ $size = $_FILES["fileUpload"]["size"];
+if( $size <= 5*1024*1024 ) {
+	move_uploaded_file(
+		$_FILES["fileUpload"]["tmp_name"],"../HinhAnh/TinTuc/$name");
+ $sql ="INSERT INTO product 
+    value (null, '$TieuDe',              
+                  '$ThoiGian',
+                  '$NoiDung',
+                  '$NoiDungChiTiet',                  
+                  '$name',
+                  )";
+      mysql_query($sql);
+     header('Location: index.php');
+ 
+}else{
+	echo "FIle cua ban phai nho hon 5M";	
+}
 }
 ?>
 <!--dong them tin-->
@@ -31,6 +43,9 @@ header("location:./index.php");
 
 <html>
 <head>
+<link href="../css/Date/jquery-ui-1.8.2.custom.css" rel="stylesheet">
+<script src="../css/Date/jquery.ui.core.js"></script>
+<script src="../css/Date/jquery.ui.datepicker.js"></script>
 <script src="../ckeditor/ckeditor.js"></script>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
@@ -215,14 +230,37 @@ function ShowThumbnails( fileUrl, data ){
 							<form role="form">
 								<div class="form-group">
 									<label>Tiêu Đề</label>
-									<input class="form-control" placeholder="Nhập tiêu đề bài viết">
+									<input class="form-control" name="TieuDe" id="TieuDe" placeholder="Nhập tiêu đề bài viết">
+								</div>
+								<div class="form-group">
+									<label>Thời gian:</label>
+									<input class="form-control" type="date" name="ThoiGian" id="ThoiGian">
+
+									<script>
+									$(document).ready(function() {
+$("#Ngay").ThoiGian({
+numberOfMonths: 1,  dateFormat: 'dd/mm/yy',
+monthNames: ['Một','Hai','Ba','Tư','Năm','Sáu','Bảy','Tám','Chín', 
+'Mười','Mười một','Mười hai'] ,
+monthNamesShort: ['Tháng1','Tháng2','Tháng3','Tháng4','Tháng5',
+'Tháng6','Tháng7','Tháng8','Tháng9','Tháng10','Tháng11','Tháng12'] ,
+dayNames: ['Chủ nhật', 'Thứ hai', 'Thứ ba', 'Thứ tư', 'Thứ năm',
+ 'Thứ sáu', 'Thứ bảy'],
+dayNamesMin: ['CN', 'T2', 'T3', 'T4', 'T5', 'T6', 'T7'] ,
+showWeek: true , showOn: 'both',
+changeMonth: true , changeYear: true,
+currentText: 'Hôm nay', weekHeader: 'Tuần'
+});
+});
+
+									</script>
 								</div>
 								<div class="form-group">
 									<label>Nội Dung</label>
 									<textarea name="NoiDung" id="NoiDung" class="form-group" ></textarea>
 									<script type="text/javascript">
 var editor = CKEDITOR.replace( 'NoiDung',{
-	uiColor : '#9AB8F3',
+	uiThoiGian : '#9AB8F3',
 	language:'vi',
 	skin:'v2',
 	filebrowserImageBrowseUrl : 'ckfinder/ckfinder.html?Type=Images',
@@ -241,7 +279,7 @@ filebrowserFlashUploadUrl : 'ckfinder/core/connector/php/connector.php?command=Q
 	['Link','Unlink','Anchor'],
 	['Image','Flash','Table','HorizontalRule','Smiley','SpecialChar','PageBreak'],
 	['Styles','Format','Font','FontSize'],
-	['TextColor','BGColor'],
+	['TextThoiGian','BGThoiGian'],
 	['Maximize', 'ShowBlocks','-','About']
 	]
 });		
@@ -251,14 +289,14 @@ filebrowserFlashUploadUrl : 'ckfinder/core/connector/php/connector.php?command=Q
 								<div class="form-group">
 									<label>Hình Ảnh</label>
 									<input type="text" class="form-control">
-									<input onclick="BrowseServer('Images:/','urlHinh')" type="button"  name="btnchonfile" id="btnchonfile" value="Chọn Hình">
+									<input type="file" class="custom-file-input" name="fileUpload" >
 									<br>
                                     <div class="form-group">
 									<label>Chi tiết</label>
-									<textarea name="ChiTiet" id="ChitTiet" class="form-group" ></textarea>
+									<textarea name="NoiDungChiTiet" id="NoiDungChiTiet" class="form-group" ></textarea>
 									<script type="text/javascript">
-var editor = CKEDITOR.replace( 'ChiTiet',{
-	uiColor : '#9AB8F3',
+var editor = CKEDITOR.replace( 'NoiDungChiTiet',{
+	uiThoiGian : '#9AB8F3',
 	language:'vi',
 	skin:'v2',
 	filebrowserImageBrowseUrl : 'ckfinder/ckfinder.html?Type=Images',
@@ -277,7 +315,7 @@ filebrowserFlashUploadUrl : 'ckfinder/core/connector/php/connector.php?command=Q
 	['Link','Unlink','Anchor'],
 	['Image','Flash','Table','HorizontalRule','Smiley','SpecialChar','PageBreak'],
 	['Styles','Format','Font','FontSize'],
-	['TextColor','BGColor'],
+	['TextThoiGian','BGThoiGian'],
 	['Maximize', 'ShowBlocks','-','About']
 	]
 });		

@@ -135,7 +135,7 @@ if(!isset( $_SESSION["Id"])){
 									<div class="col-xs-2 col-md-2 date">
 										<div class="large">
 
-                                   <img style="width:100px;height:100px;" src="../HinhAnh/<?php echo $row_tintuc['HinhAnh'] ?>" alt="Italian Trulli">
+                                   <img style="width:100px;height:100px;" src="../HinhAnh/TinTuc/<?php echo $row_tintuc['HinhAnh'] ?>" alt="Italian Trulli">
 
                                         </div>
 										
