@@ -22,7 +22,7 @@ require "./Ketnoi/Db.php";
      // dang nhap ddung
      $row = mysql_fetch_array($admin);
      $_SESSION["Id"] = $row ['Id'];
-     $_SESSION["Name"] = $row ['Name'];
+     $_SESSION["Name"] = $row ['HoVaTen'];
      $_SESSION["TenDangNhap"] = $row ['TenDangNhap'];
      header('Location:./home.php');
    }else{

@@ -1,8 +1,13 @@
 <?php 
+session_start();
 require "../Ketnoi/Db.php";
 require "../Ketnoi/Truyvan.php";
+// kiem tra trang thai chua dang nhap
+if(!isset( $_SESSION["Id"])){
+	header('Location: ../index.php');
+	require "../index.php";
+}
 ?>
-
 <html><head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
@@ -88,6 +93,7 @@ require "../Ketnoi/Truyvan.php";
 	<!-- danh mục-->
 	<?php require "../Block/danhmuc.php"  ?>
 	<!----dong danh muc-->
+
 		<div class="divider"></div>
 	
 		
@@ -114,7 +120,7 @@ require "../Ketnoi/Truyvan.php";
 				<div class="panel panel-default articles">
 					<div class="panel-heading">
 						Tin tức mới
-						<a href="/giaothong/admin/tintuc/themtin.php"><button type="button"  class="btn btn-md btn-primary">Thêm mới</button></a>
+						<a href="../tintuc/themtin.php"><button type="button"  class="btn btn-md btn-primary">Thêm mới</button></a>
 						<span class="pull-right clickable panel-toggle panel-button-tab-left"></span></div>
 					<div class="panel-body articles-container">
 						
@@ -135,7 +141,7 @@ require "../Ketnoi/Truyvan.php";
 										
 									</div>
 									<div class="col-xs-10 col-md-10">
-										<h4><a href="#"><?php echo $row_tintuc['TieuDe'] ?></a></h4>
+										<h4><a href="edit.php?Id=<?php echo $row_tintuc['Id'] ?>"><?php echo $row_tintuc['TieuDe'] ?></a></h4>
 										<p><?php echo $row_tintuc['NoiDung'] ?></p>
 									</div>
 								</div>
