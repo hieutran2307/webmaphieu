@@ -140,10 +140,10 @@ if(!isset( $_SESSION["Id"])){
 										
 									</div>
 									<div class="col-xs-10 col-md-10">
-										<h4><a href="edit.php?Id=<?php echo $row_tintuc['Id'] ?>"><?php echo $row_canhbao['TenDuong'] ?></a></h4>
+										<h4><a href="chinhsua.php?ID=<?php echo $row_canhbao['ID'] ?>"><?php echo $row_canhbao['TenDuong'] ?></a></h4>
 										<p style="color:red;font-size:15px;"><?php echo $row_canhbao['TinhTrang'] ?></p>
 									</div>
-									<h4><a href="xoa.php?Id=<?php echo $row_tintuc['Id'] ?>">Xóa</a></h4>
+									<h4><a href="xoa.php?ID=<?php echo $row_canhbao['ID'] ?>">Xóa</a></h4>
 								</div>
 							</div>
 							<div class="clear"></div>

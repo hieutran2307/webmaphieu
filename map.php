@@ -23,7 +23,6 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">	
 		
 		<!-- Title Tag -->
-        <title>Bizpro  &minus; One Page Business and Corporate HTML Template</title>
 		
 		<!-- Favicon -->
 		<link rel="icon" type="image/png" href="images/favicon.png">	
@@ -90,24 +89,7 @@
 		<!--/ End Preloader -->
 		
 		<!-- Mp Color -->
-		<div class="mp-color">
-			<div class="icon inOut"><i class="fa fa-cog fa-spin"></i></div>
-			<h4>Choose Layout</h4>
-			<ul>
-				<li><a href="index.html">Home Business</a></li>
-				<li><a href="index2.html">Home Animate Text</a></li>
-				<li><a href="index3.html">Home Video BG</a></li>
-			</ul>
-			<h4>Choose Color</h4>
-			<span class="color1"></span>
-			<span class="color2"></span>
-			<span class="color3"></span>
-			<span class="color4"></span>
-			<span class="color5"></span>
-			<span class="color6"></span>
-			<span class="color7"></span>
-			<span class="color8"></span>
-		</div>
+	<?php require "/block/giaodien.php" ?>
 		<!--/ ENd Mp Color -->
 		
 		<!-- Start Header -->

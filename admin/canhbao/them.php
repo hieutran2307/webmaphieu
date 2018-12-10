@@ -248,6 +248,7 @@ function ShowThumbnails( fileUrl, data ){
 								</div>
                                 <div class="form-group">
 									<label>Hình Ảnh</label>
+									
 									<input type="file" class="custom-file-input" name="fileUpload" >
                                     </div>
                                 <div class="form-group">

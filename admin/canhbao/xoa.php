@@ -27,13 +27,7 @@ $name = $_FILES["fileUpload"]["name"];
 if( $size <= 5*1024*1024 ) {
 	move_uploaded_file(
 		$_FILES["fileUpload"]["tmp_name"],"../../HinhAnh/CanhBao/$name");
-  $sql ="UPDATE canhbao SET
-  TenDuong= '$TenDuong',
-  KinhDo ='$KinhDo',
-  ViDo ='$ViDo',
-  HinhAnh ='$name',
-  TinhTrang= '$TinhTrang'
-  where ID='$ID'";
+  $sql ="DELETE FROM canhbao  WHERE Id='$ID'";
  
 	mysql_query($sql);
     header('Location: index.php');
@@ -236,26 +230,26 @@ function ShowThumbnails( fileUrl, data ){
 						<form method="POST" enctype="multipart/form-data">
 								<div class="form-group">
 									<label>Tên Đường:</label>
-									<input class="form-control" name="TenDuong" id="TenDuong" value="<?php echo $row_chi_canh_bao['TenDuong'] ?>">
+									<input disabled class="form-control" name="TenDuong" id="TenDuong" value="<?php echo $row_chi_canh_bao['TenDuong'] ?>">
 								</div>
 								<div class="form-group">
 									<label>Kinh Độ:</label>
-									<input class="form-control" name="KinhDo" id="KinhDo" value="<?php echo $row_chi_canh_bao['KinhDo'] ?>">
+									<input disabled class="form-control" name="KinhDo" id="KinhDo" value="<?php echo $row_chi_canh_bao['KinhDo'] ?>">
 								</div>
 								<div class="form-group">
 									<label>Vĩ Độ:</label>
-									<input class="form-control" name="ViDo" id="ViDo" value="<?php echo $row_chi_canh_bao['ViDo'] ?>">
+									<input disabled class="form-control" name="ViDo" id="ViDo" value="<?php echo $row_chi_canh_bao['ViDo'] ?>">
 								</div>
                                 <div class="form-group">
 									<label>Hình Ảnh</label>
 									<img src="../../HinhAnh/CanhBao/<?php echo $row_chi_canh_bao['HinhAnh'] ?>" alt="Paris" style="width:150px">								
-									<input type="file" value="<?php echo $row_chi_canh_bao['HinhAnh'] ?>" class="custom-file-input" name="fileUpload" >
+									<input disabled type="file" value="<?php echo $row_chi_canh_bao['HinhAnh'] ?>" class="custom-file-input" name="fileUpload" >
                                     </div>
                                 <div class="form-group">
 									<label>Tinh Trạng:</label>
-									<input class="form-control" name="TinhTrang" id="TinhTrang" value="<?php echo $row_chi_canh_bao['TinhTrang'] ?>">
+									<input disabled class="form-control" name="TinhTrang" id="TinhTrang" value="<?php echo $row_chi_canh_bao['TinhTrang'] ?>">
 								</div>				
-								<input type="submit" name="btncapnhat" id="btncapnhat" value="Cập Nhật" class="btn btn-lg btn-primary"></input>
+								<input onclick="return confirm('Bạn Có muốn xóa hay không')"  type="submit" name="btncapnhat" id="btncapnhat" value="Cập Nhật" class="btn btn-lg btn-primary"></input>
 							</form>
 						</div>
 					</div>

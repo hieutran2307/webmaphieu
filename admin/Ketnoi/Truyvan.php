@@ -32,4 +32,11 @@ function danh_sach_canh_bao()
 
 }
 
+function chi_tiet_canh_bao($ID)
+{
+$sql = "SELECT * FROM canhbao WHERE ID='$ID'";
+$row = mysql_query($sql);
+return mysql_fetch_array($row);
+}
+
 ?>

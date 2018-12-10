@@ -5,7 +5,7 @@
         <div class="col-md-2 col-sm-12 col-xs-12">
             <!-- Logo -->
             <div class="logo">
-                <a href="index.html">MAP ONLINE</a>
+                <a href="index.php">MAP ONLINE</a>
             </div>
             <!--/ End Logo -->
         </div>
@@ -15,12 +15,13 @@
                 <nav class="mainmenu">
                     <div class="mobile-nav"></div>
                     <div class="collapse navbar-collapse">
-                        <ul class="nav navbar-nav menu">
-                            <li class="active"><a href="#">TRANG CHỦ</a>			
+                        <ul class="nav navbar-nav menu">		
                             </li>
+                            <li><a href="index.php">TRANG CHỦ</a></li>
                             <li><a href="#about-us">CẢNH BÁO</a></li>
                             <li><a href="blog.php">TIN TỨC</a></li>
                             <li><a href="map.php">MAP GIAO THÔNG</a></li>
+                            <li><a href="tracuuluat.php">TRA CỨU LUẬT</a></a></li>
                             
                             </li>			
                         </ul>

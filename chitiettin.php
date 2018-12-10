@@ -12,70 +12,30 @@ $row_tin = mysql_fetch_array($tin);
 ?>
 
 <html class="no-js" lang="en">
-    <head>
-        <!-- Meta tag -->
-		<meta charset="utf-8">
-        <meta http-equiv="x-ua-compatible" content="ie=edge">
-		<meta name="description" content="welcome to codeglim">
-		<meta name='copyright' content='codeglim'>
-		<meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1">	
-		
-		<!-- Title Tag -->
-        <title>Bizpro  &minus; One Page Business and Corporate HTML Template</title>
-		
-		<!-- Favicon -->
-		<link rel="icon" type="image/png" href="images/favicon.png">	
-		
-        <!-- Google Font -->
-		<link href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,500,700,900" rel="stylesheet"> 
-
-		<!-- Google Map Api -->
-		<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDnhgNBg6jrSuqhTeKKEFDWI0_5fZLx0vM" type="text/javascript"></script>	
-	
-		<!-- Font Awesome CSS -->
-        <link rel="stylesheet" href="css/font-awesome.min.css">
-
-		<!-- Animate CSS -->
-        <link rel="stylesheet" href="css/animate.min.css">
-
-		<!-- Slicknav CSS -->
-        <link rel="stylesheet" href="css/slicknav.min.css">
-
-		<!-- Owl Carousel CSS -->
-		<link rel="stylesheet" href="css/owl.theme.default.css">
-        <link rel="stylesheet" href="css/owl.carousel.min.css">
-		
-		<!-- Magnific Popup CSS -->
-		<link rel="stylesheet" href="css/magnific-popup.css">
-		
-		<!-- Bootstrap CSS -->
-        <link rel="stylesheet" href="css/bootstrap.min.css">
-		
-		<!-- Bizpro Style CSS -->
-        <link rel="stylesheet" href="style.css">
-        <link rel="stylesheet" href="css/default.css">	
-        <link rel="stylesheet" href="css/responsive.css">	
-		
-		<!-- You Can Use 8 Different color Just remove bottom of the comment tag -->
-		
-		<!--<link rel="stylesheet" href="css/skin/red.css">-->
-		<!--<link rel="stylesheet" href="css/skin/amest.css">-->
-		<!--<link rel="stylesheet" href="css/skin/yellow.css">-->
-		<!--<link rel="stylesheet" href="css/skin/blaze.css">-->
-		<!--<link rel="stylesheet" href="css/skin/blue.css">-->
-		<!--<link rel="stylesheet" href="css/skin/orange.css">-->
-		<!--<link rel="stylesheet" href="css/skin/green.css">-->
-		<link rel="stylesheet" href="css/skin/green.css">
-		
-		<!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
-		<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-		<!--[if lt IE 9]>
-		  <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
-		  <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-		<![endif]-->
-		<link rel="stylesheet" href="#" id="colors">
-    </head>
+<head>
+       
+	   <meta charset="utf-8">
+	   <meta http-equiv="x-ua-compatible" content="ie=edge">
+	   <meta name="description" content="welcome to codeglim">
+	   <meta name='copyright' content='codeglim'>
+	   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+	   <meta name="viewport" content="width=device-width, initial-scale=1">		
+	   <title> HỆ THỐNG MAP GIAO THÔNG  &minus;</title>
+	   <link href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,500,700,900" rel="stylesheet"> 
+	   <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDnhgNBg6jrSuqhTeKKEFDWI0_5fZLx0vM" type="text/javascript"></script>	
+	   <link rel="stylesheet" href="css/font-awesome.min.css">
+	   <link rel="stylesheet" href="css/animate.min.css">
+	   <link rel="stylesheet" href="css/slicknav.min.css">		
+	   <link rel="stylesheet" href="css/owl.theme.default.css">
+	   <link rel="stylesheet" href="css/owl.carousel.min.css">	
+	   <link rel="stylesheet" href="css/magnific-popup.css">	
+	   <link rel="stylesheet" href="css/bootstrap.min.css">		
+	 <link rel="stylesheet" href="style.css">
+	   <link rel="stylesheet" href="css/default.css">	
+	   <link rel="stylesheet" href="css/responsive.css">	
+	   <link rel="stylesheet" href="css/skin/green.css">
+	   <link rel="stylesheet" href="#" id="colors">
+   </head>
     <body>
 	
 		<!-- Preloader -->
@@ -90,24 +50,7 @@ $row_tin = mysql_fetch_array($tin);
 		<!--/ End Preloader -->
 		
 		<!-- Mp Color -->
-		<div class="mp-color">
-			<div class="icon inOut"><i class="fa fa-cog fa-spin"></i></div>
-			<h4>Choose Layout</h4>
-			<ul>
-				<li><a href="index.html">Home Business</a></li>
-				<li><a href="index2.html">Home Animate Text</a></li>
-				<li><a href="index3.html">Home Video BG</a></li>
-			</ul>
-			<h4>Choose Color</h4>
-			<span class="color1"></span>
-			<span class="color2"></span>
-			<span class="color3"></span>
-			<span class="color4"></span>
-			<span class="color5"></span>
-			<span class="color6"></span>
-			<span class="color7"></span>
-			<span class="color8"></span>
-		</div>
+	<?php require "/block/giaodien.php" ?>
 		<!--/ ENd Mp Color -->
 		
 		<!-- Start Header -->
