@@ -3,33 +3,35 @@ session_start();
 	require "../Ketnoi/Db.php";
 	require "../Ketnoi/Truyvan.php";
 // kiem tra trang thai chua dang nhap
-if(!isset( $_SESSION["Id"])){
-	header('Location: ../index.php');
-	require "../index.php";
-}
+// if(!isset( $_SESSION["Id"])){
+// 	header('Location: ../index.php');
+// 	require "../index.php";
+// }
 ?>
 <!--them tin-->
 <?php
-if(isset($_POST['btncapnhat']))
+if(isset($_POST["btncapnhat"]))
 {
-$TieuDe = $_POST['TieuDe'];
-$ThoiGian = $_POST['ThoiGian'];
- $NoiDung = $_POST['NoiDung'];
- $NoiDungChiTiet = $_POST['NoiDungChiTiet'];
+$TieuDe = $_POST["TieuDe"];
+$ThoiGian = $_POST["ThoiGian"];
+ $NoiDung = $_POST["NoiDung"];
+ $NoiDungChiTiet = $_POST["NoiDungChiTiet"];
 $name = $_FILES["fileUpload"]["name"];
  $type = $_FILES["fileUpload"]["type"];
  $size = $_FILES["fileUpload"]["size"];
 if( $size <= 5*1024*1024 ) {
 	move_uploaded_file(
 		$_FILES["fileUpload"]["tmp_name"],"../HinhAnh/TinTuc/$name");
- $sql ="INSERT INTO product 
+  $sql ="INSERT INTO tintuc
     value (null, '$TieuDe',              
                   '$ThoiGian',
                   '$NoiDung',
-                  '$NoiDungChiTiet',                  
-                  '$name',
-                  )";
-      mysql_query($sql);
+				  '$name',
+                  '$NoiDungChiTiet'                  
+                  
+				  )";
+ 
+	mysql_query($sql);
      header('Location: index.php');
  
 }else{
@@ -227,7 +229,7 @@ function ShowThumbnails( fileUrl, data ){
 				<div class="panel panel-default">
 					<div class="panel-body">
 						<div class="">
-							<form role="form">
+						<form method="POST" enctype="multipart/form-data">
 								<div class="form-group">
 									<label>Tiêu Đề</label>
 									<input class="form-control" name="TieuDe" id="TieuDe" placeholder="Nhập tiêu đề bài viết">
@@ -288,7 +290,6 @@ filebrowserFlashUploadUrl : 'ckfinder/core/connector/php/connector.php?command=Q
 								
 								<div class="form-group">
 									<label>Hình Ảnh</label>
-									<input type="text" class="form-control">
 									<input type="file" class="custom-file-input" name="fileUpload" >
 									<br>
                                     <div class="form-group">
@@ -319,16 +320,9 @@ filebrowserFlashUploadUrl : 'ckfinder/core/connector/php/connector.php?command=Q
 	['Maximize', 'ShowBlocks','-','About']
 	]
 });		
-</script>
+</script>				
 								</div>
-								
-                                    <br/>
-                                    <button type="button" name="btnthemtin" id="btnthemtin" class="btn btn-lg btn-primary">Cập Nhật</button>
-
-								</div>
-							
-						
-								</div>
+								<input type="submit" name="btncapnhat" id="btncapnhat" value="Cập Nhật" class="btn btn-lg btn-primary"></input>
 							</form>
 						</div>
 					</div>
