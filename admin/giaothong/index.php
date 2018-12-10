@@ -11,7 +11,7 @@ if(!isset( $_SESSION["Id"])){
 <html><head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>Lumino - Danh sách tin tức</title>
+	<title>Lumino - Danh sách luật giao thông</title>
 	<link href="../css/bootstrap.min.css" rel="stylesheet">
 	<link href="../css/font-awesome.min.css" rel="stylesheet">
 	<link href="../css/datepicker3.css" rel="stylesheet">
@@ -105,13 +105,13 @@ if(!isset( $_SESSION["Id"])){
 				<li><a href="../home.php">
 					<em class="fa fa-home"></em>
 				</a></li>
-				<li class="active">Danh sách tin tức</li>
+				<li class="active">Danh sách luật giao thông</li>
 			</ol>
 		</div><!--/.row-->
 		
 		<div class="row">
 			<div class="col-lg-12">
-				<h1 class="page-header">Danh sách tin tức</h1>
+				<h1 class="page-header">Danh sách luật giao thông</h1>
 			</div>
 		</div><!--/.row-->
 
@@ -119,13 +119,13 @@ if(!isset( $_SESSION["Id"])){
 			<div class="">
 				<div class="panel panel-default articles">
 					<div class="panel-heading">
-						<a href="../tintuc/themtin.php"><button type="button"  class="btn btn-md btn-primary">Thêm mới</button></a>
+						<a href="../giaothong/them.php"><button type="button"  class="btn btn-md btn-primary">Thêm mới</button></a>
 						<span class="pull-right clickable panel-toggle panel-button-tab-left"></span></div>
 					<div class="panel-body articles-container">
 						
 						<?php 
-							$ds_tintuc = danh_sach_tin();
-							while ($row_tintuc = mysql_fetch_array($ds_tintuc))
+							$ds_luat = danh_sach_luat_giao_thong();
+							while ($row_dsluat = mysql_fetch_array($ds_luat))
 							{
 						?>
 						<div class="article border-bottom">
@@ -134,16 +134,16 @@ if(!isset( $_SESSION["Id"])){
 									<div class="col-xs-2 col-md-2 date">
 										<div class="large">
 
-                                   <img style="width:100px;height:100px;" src="../../HinhAnh/TinTuc/<?php echo $row_tintuc['HinhAnh'] ?>" alt="Italian Trulli">
+                                   <img style="width:100px;height:100px;" src="../../HinhAnh/Luat/<?php echo $row_dsluat['HinhAnh'] ?>" alt="Italian Trulli">
 
                                         </div>
 										
 									</div>
 									<div class="col-xs-10 col-md-10">
-										<h4><a href="edit.php?Id=<?php echo $row_tintuc['Id'] ?>"><?php echo $row_tintuc['TieuDe'] ?></a></h4>
-										<p><?php echo $row_tintuc['NoiDung'] ?></p>
+										<h4><a href="edit.php?Id=<?php echo $row_dsluat['Id'] ?>"><?php echo $row_dsluat['TIeuDe'] ?></a></h4>
+										<p><?php echo $row_dsluat['NoiDung'] ?></p>
 									</div>
-									<h4><a href="xoa.php?Id=<?php echo $row_tintuc['Id'] ?>">Xóa</a></h4>
+									<h4><a href="xoa.php?Id=<?php echo $row_dsluat['Id'] ?>">Xóa</a></h4>
 								</div>
 							</div>
 							<div class="clear"></div>

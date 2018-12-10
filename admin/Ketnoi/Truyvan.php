@@ -39,4 +39,17 @@ $row = mysql_query($sql);
 return mysql_fetch_array($row);
 }
 
+function danh_sach_luat_giao_thong()
+{
+      $sql = "SELECT * FROM luatgiaothong";
+    return mysql_query($sql);
+
+}
+function chi_tiet_luat($Id)
+{
+$sql = "SELECT * FROM luatgiaothong WHERE Id='$Id'";
+$row = mysql_query($sql);
+return mysql_fetch_array($row);
+}
+
 ?>

@@ -1,36 +1,44 @@
 <?php 
 session_start();
-require "../Ketnoi/Db.php";
-require "../Ketnoi/Truyvan.php";
-// kiem tra trang thai chua dang nhap
-if(!isset( $_SESSION["Id"])){
-	header('Location: ../index.php');
-	require "../index.php";
-}
+	require "../Ketnoi/Db.php";
+	require "../Ketnoi/Truyvan.php";
+ //kiem tra trang thai chua dang nhap
+ if(!isset( $_SESSION["Id"])){
+ 	header('Location: ../index.php');
+ 	require "../index.php";
+ }
 ?>
 <?php 
 $Id = $_GET["Id"];
 settype($Id, "int");
-$row_chi_tiet_tin_tuc = chi_tiet_tin_tuc($Id);
+$row_chi_tiet_luat = chi_tiet_luat($Id);
 ?>
 <!--them tin-->
 <?php
 if(isset($_POST["btncapnhat"]))
 {
-$TieuDe = $_POST["TieuDe"];
-$ThoiGian = $_POST["ThoiGian"];
+$PhuongTien = $_POST["PhuongTien"];
+$TIeuDe = $_POST["TIeuDe"];
  $NoiDung = $_POST["NoiDung"];
- $NoiDungChiTiet = $_POST["NoiDungChiTiet"];
+ $MucPhat = $_POST["MucPhat"];
+ $NghiDinh = $_POST["NghiDinh"];
 $name = $_FILES["fileUpload"]["name"];
  $type = $_FILES["fileUpload"]["type"];
  $size = $_FILES["fileUpload"]["size"];
 if( $size <= 5*1024*1024 ) {
 	move_uploaded_file(
-		$_FILES["fileUpload"]["tmp_name"],"../HinhAnh/TinTuc/$name");
-  $sql ="DELETE FROM tintuc  WHERE Id='$Id'";
+		$_FILES["fileUpload"]["tmp_name"],"../../HinhAnh/Luat/$name");
+  $sql ="UPDATE luatgiaothong SET
+  HinhAnh= '$name',
+  PhuongTien ='$PhuongTien',
+  TIeuDe ='$TIeuDe',
+  NoiDung ='$NoiDung',
+  MucPhat= '$MucPhat',
+  NghiDinh= '$NghiDinh'
+  where Id='$Id'";
  
 	mysql_query($sql);
-	 header('Location: index.php');
+    header('Location: index.php');
  
 }else{
 	echo "FIle cua ban phai nho hon 5M";	
@@ -38,6 +46,9 @@ if( $size <= 5*1024*1024 ) {
 }
 ?>
 <!--dong them tin-->
+
+
+
 <html>
 <head>
 <link href="../css/Date/jquery-ui-1.8.2.custom.css" rel="stylesheet">
@@ -97,6 +108,7 @@ function ShowThumbnails( fileUrl, data ){
 	<?php require "../Block/danhmuc.php" ?>
 		
 	<div class="col-sm-9 col-sm-offset-3 col-lg-10 col-lg-offset-2 main">
+	
 		
 		<div class="row">
 			<div class="col-lg-12">
@@ -115,36 +127,59 @@ function ShowThumbnails( fileUrl, data ){
 						<div class="">
 						<form method="POST" enctype="multipart/form-data">
 								<div class="form-group">
-									<label>Tiêu Đề</label>
-									<input disabled class="form-control" value="<?php echo $row_chi_tiet_tin_tuc['TieuDe'] ?>" name="TieuDe" id="TieuDe">
+									<label>Điều luật</label>
+									<input class="form-control" name="TIeuDe" id="TIeuDe" value="<?php echo $row_chi_tiet_luat['TIeuDe'] ?>">
 								</div>
 								<div class="form-group">
-									<label>Thời gian:</label>
-									<input disabled class="form-control" value="<?php echo $row_chi_tiet_tin_tuc['ThoiGian'] ?>" type="date" name="ThoiGian" id="ThoiGian">
+									<label>Phương tiện</label>
+									<input class="form-control" name="PhuongTien" id="PhuongTien" value="<?php echo $row_chi_tiet_luat['PhuongTien'] ?>">
+                                </div>
 
-									<script>
-									$(document).ready(function() {
-$("#Ngay").ThoiGian({
-numberOfMonths: 1,  dateFormat: 'dd/mm/yy',
-monthNames: ['Một','Hai','Ba','Tư','Năm','Sáu','Bảy','Tám','Chín', 
-'Mười','Mười một','Mười hai'] ,
-monthNamesShort: ['Tháng1','Tháng2','Tháng3','Tháng4','Tháng5',
-'Tháng6','Tháng7','Tháng8','Tháng9','Tháng10','Tháng11','Tháng12'] ,
-dayNames: ['Chủ nhật', 'Thứ hai', 'Thứ ba', 'Thứ tư', 'Thứ năm',
- 'Thứ sáu', 'Thứ bảy'],
-dayNamesMin: ['CN', 'T2', 'T3', 'T4', 'T5', 'T6', 'T7'] ,
-showWeek: true , showOn: 'both',
-changeMonth: true , changeYear: true,
-currentText: 'Hôm nay', weekHeader: 'Tuần'
-});
-});
+                                <div class="form-group">
+                                <input type="file" class="custom-file-input" name="fileUpload" value="<?php echo $row_chi_tiet_luat['name'] ?>" />
 
-									</script>
+                                </div>
+                                
+								<div class="form-group">
+									<label>Nội Dung</label>
+									<textarea name="NoiDung" id="NoiDung" class="form-group" ><?php echo $row_chi_tiet_luat['NoiDung'] ?></textarea>
+									<script type="text/javascript">
+var editor = CKEDITOR.replace( 'NoiDung',{
+	uiTIeuDe : '#9AB8F3',
+	language:'vi',
+	skin:'v2',
+	filebrowserImageBrowseUrl : 'ckfinder/ckfinder.html?Type=Images',
+filebrowserFlashBrowseUrl : 'ckfinder/ckfinder.html?Type=Flash',
+filebrowserImageUploadUrl : 'ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Images',
+filebrowserFlashUploadUrl : 'ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Flash',
+			 	
+	toolbar:[
+	['Source','-','Save','NewPage','Preview','-','Templates'],
+	['Cut','Copy','Paste','PasteText','PasteFromWord','-','Print'],
+	['Undo','Redo','-','Find','Replace','-','SelectAll','RemoveFormat'],
+	['Form', 'Checkbox', 'Radio', 'TextField', 'Textarea', 'Select', 'Button', 'ImageButton', 'HiddenField'],
+	['Bold','Italic','Underline','Strike','-','Subscript','Superscript'],
+	['NumberedList','BulletedList','-','Outdent','Indent','Blockquote','CreateDiv'],
+	['JustifyLeft','JustifyCenter','JustifyRight','JustifyBlock'],
+	['Link','Unlink','Anchor'],
+	['Image','Flash','Table','HorizontalRule','Smiley','SpecialChar','PageBreak'],
+	['Styles','Format','Font','FontSize'],
+	['TextTIeuDe','BGTIeuDe'],
+	['Maximize', 'ShowBlocks','-','About']
+	]
+});		
+</script>
 								</div>
 								
-								
-								
-								<input onclick="return confirm('Bạn Có muốn xóa hay không')" type="submit" name="btncapnhat" id="btncapnhat" value="Xóa" class="btn btn-lg btn-primary"></input>
+                                <div class="form-group">
+									<label>Mức phạt</label>
+									<input class="form-control" name="MucPhat" id="MucPhat" value="<?php echo $row_chi_tiet_luat['MucPhat'] ?>">
+                                </div>
+                                <div class="form-group">
+									<label>Nghị định</label>
+									<input class="form-control" name="NghiDinh" id="NghiDinh" value="<?php echo $row_chi_tiet_luat['NghiDinh'] ?>">
+								</div>
+								<input type="submit" name="btncapnhat" id="btncapnhat" value="Cập Nhật" class="btn btn-lg btn-primary">
 							</form>
 						</div>
 					</div>

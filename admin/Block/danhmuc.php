@@ -1,7 +1,3 @@
-<?php 
-session_start();
-?>
-
 <div id="sidebar-collapse" class="col-sm-3 col-lg-2 sidebar">
 		<div class="profile-sidebar">
 			<div class="profile-userpic">
